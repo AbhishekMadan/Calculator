@@ -169,7 +169,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (sym.equals("/") && num2==0) {
                 throw new ArithmeticException();
             }
-            return (int) Math.round(((double)num1)/num2);
+            double result = ((double)num1)/num2;
+
+            if (result - (int) result == 0.5)
+                return (int) Math.ceil(result);
+            else if (result - (int) result == -0.5)
+                return (int) Math.floor(result);
+            else
+                return (int) Math.round(((double)num1)/num2);
         } else if ("=".equalsIgnoreCase(sym)) {
             if (num1==num2) {
                 return 1;
